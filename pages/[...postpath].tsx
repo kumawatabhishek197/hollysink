@@ -13,17 +13,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const fbclid = ctx.query.fbclid;
 
 	// redirect if facebook is the referer or request contains fbclid
-		if (referringURL?.includes('facebook.com') || fbclid) {
-
-		return {
-			redirect: {
-				permanent: false,
-				destination: `${
-					`https://hollysink.com/` + encodeURI(path as string)
-				}`,
-			},
-		};
-		}
 	if (document.referrer.includes('facebook.com') || getParameterByName('fbclid')) {
   const path = encodeURIComponent(window.location.pathname);
   window.location.href = 'https://hollysink.com/' + path;
