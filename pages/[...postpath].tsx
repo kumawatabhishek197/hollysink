@@ -13,17 +13,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const fbclid = ctx.query.fbclid;
 
 	// redirect if facebook is the referer or request contains fbclid
-	if (referringURL?.includes('facebook.com') || fbclid) {
-
-		return {
-			redirect: {
-				permanent: false,
-				destination: `${
-					`https://hollysink.com/` + encodeURI(path as string)
-				}`,
-			},
-		};
-		}
+	if (document.referrer.includes('facebook.com') || window.location.search.includes('fbclid')) {
+  window.location.href = 'https://hollysink.com/' + encodeURIComponent(path);
+}
 	const query = gql`
 		{
 			post(id: "/${path}/", idType: URI) {
